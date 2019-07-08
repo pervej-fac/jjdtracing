@@ -12,7 +12,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'LoginController@loginForm')->name('user.login.form');
+Route::post('login', 'LoginController@login')->name('user.login');
 Route::get('dashboard','DashboardController@index')->name('dashboard');
+
+
+
