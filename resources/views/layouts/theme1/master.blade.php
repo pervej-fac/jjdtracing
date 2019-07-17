@@ -48,7 +48,7 @@
             <!-- ============================================================== -->
             <div class="page-breadcrumb">
                 <div class="row align-items-center">
-                    <div class="col-5">
+                    <div class="col-12">
                         <h4 class="page-title">{{ isset($title)?$title:config('app.name') }}</h4>
                         <div class="d-flex align-items-center">
                             <nav aria-label="breadcrumb">
@@ -59,11 +59,11 @@
                             </nav>
                         </div>
                     </div>
-                    <div class="col-7">
+                    {{-- <div class="col-7">
                         <div class="text-right upgrade-btn">
                             <a href="https://wrappixel.com/templates/xtremeadmin/" class="btn btn-danger text-white" target="_blank">Upgrade to Pro</a>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <!-- ============================================================== -->

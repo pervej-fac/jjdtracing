@@ -14,7 +14,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'LoginController@loginForm')->name('user.login.form');
 Route::post('login', 'LoginController@login')->name('user.login');
-Route::get('dashboard','DashboardController@index')->name('dashboard');
+Route::middleware('auth')->group(function () {
+    Route::get('dashboard','DashboardController@index')->name('dashboard');
+    Route::resource('users', 'UsersController');
+    Route::resource('employee', 'EmployeeController');
+    Route::resource('department', 'DepartmentController');
+    Route::resource('designation', 'DesignationController');
+});
+
+Route::get('logout',function(){
+    auth()->logout();
+    return redirect()->route('user.login.form');
+});
 
 
 
