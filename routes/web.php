@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\HttpKernel\Fragment\RoutableFragmentRenderer;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('employee', 'EmployeeController');
     Route::resource('department', 'DepartmentController');
     Route::resource('designation', 'DesignationController');
+    Route::resource('page', 'PageController');
+
 });
 
 Route::get('logout',function(){

@@ -10,7 +10,7 @@
                     <div class="user-content hide-menu m-l-10">
                         <a href="javascript:void(0)" class="" id="Userdd" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <h5 class="m-b-0 user-name font-medium">{{ auth()->user()->name }} <i class="fa fa-angle-down"></i></h5>
-                            <span class="op-5 user-email">{{ auth()->user()->name }}</span>
+                            <span class="op-5 user-email">{{ auth()->user()->email }}</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="Userdd">
                             <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
@@ -32,7 +32,7 @@
             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('designation.index') }}" aria-expanded="false"><i class="mdi mdi-face"></i><span class="hide-menu">Designations</span></a></li>
             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('department.index') }}" aria-expanded="false"><i class="mdi mdi-face"></i><span class="hide-menu">Departments</span></a></li>
             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('employee.index') }}" aria-expanded="false"><i class="mdi mdi-border-all"></i><span class="hide-menu">Employees</span></a></li>
-            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="starter-kit.html" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Blank</span></a></li>
+            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('page.index') }}" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Pages</span></a></li>
             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="error-404.html" aria-expanded="false"><i class="mdi mdi-alert-outline"></i><span class="hide-menu">404</span></a></li>
         </ul>
 
