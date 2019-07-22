@@ -75,9 +75,12 @@ class PageController extends Controller
      * @param  \App\page  $page
      * @return \Illuminate\Http\Response
      */
-    public function edit(page $page)
+    public function edit($id)
     {
-        //
+        $data['title']='Edit Page';
+        $data['operators']=Employee::orderBy('employeename')->get();
+        $data['page']=Page::findOrfail($id);
+        return view('admin.page.edit',$data);
     }
 
     /**
@@ -89,7 +92,18 @@ class PageController extends Controller
      */
     public function update(Request $request, page $page)
     {
-        //
+        $request->validate([
+            'pageno'=>'required',
+            'pagename'=>'required',
+            'operatorid'=>'required',
+            'tracingtime'=>'required',
+            'status'=>'required'
+        ]);
+
+        $page_r=$request->except('_token');
+        $page->update($page_r);
+        session()->flash('message','Page updated successfully!');
+        return redirect()->route('page.index');
     }
 
     /**
@@ -100,6 +114,8 @@ class PageController extends Controller
      */
     public function destroy(page $page)
     {
-        //
+        Page::findOrfail($page->id)->delete($page->id);
+        session()->flash('message','Page deleted successfully');
+        return redirect()->route('page.index');
     }
 }
