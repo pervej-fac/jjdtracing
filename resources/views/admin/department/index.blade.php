@@ -22,13 +22,12 @@
                                         <td>{{ $department->departmentname }}</td>
                                         <td>{{ $department->details }}</td>
                                         <td>
-                                            <a href="{{ route('department.edit',$department->id) }}" class="btn btn-primary">Edit</a>
-                                        </td>
-                                        <td>
-                                            <form action="{{ route('department.destroy',$department->id) }}" method="POST">
+                                            <a href="{{ route('department.edit',$department->id) }}" class="btn btn-sm btn-primary">Edit</a>
+
+                                            <form action="{{ route('department.destroy',$department->id) }}" method="POST" style="display:inline">
                                                 @csrf
                                                 @method('delete')
-                                                <button class="btn btn-primary" onclick="return confirm('Are you sure, you want to delete?')">Delete</button>
+                                                <button class="btn btn-sm btn-primary" onclick="return confirm('Are you sure, you want to delete?')">Delete</button>
                                             </form>
                                         </td>
                                     </tr>

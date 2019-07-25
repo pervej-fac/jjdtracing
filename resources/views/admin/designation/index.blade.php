@@ -22,13 +22,12 @@
                                         <td>{{ $designation->designation }}</td>
                                         <td>{{ $designation->details }}</td>
                                         <td>
-                                            <a href="{{ route('designation.edit',$designation->id) }}" class="btn btn-primary">Edit</a>
-                                        </td>
-                                        <td>
-                                            <form action="{{ route('designation.destroy',$designation->id) }}" method="POST">
+                                            <a href="{{ route('designation.edit',$designation->id) }}" class="btn btn-sm btn-primary">Edit</a>
+
+                                            <form action="{{ route('designation.destroy',$designation->id) }}" method="POST" style="display:inline">
                                                 @csrf
                                                 @method('delete')
-                                                <button class="btn btn-primary" onclick="return confirm('Are you sure, you want to delete?')">Delete</button>
+                                                <button class="btn btn-sm btn-primary" onclick="return confirm('Are you sure, you want to delete?')">Delete</button>
                                             </form>
                                         </td>
                                     </tr>

@@ -30,13 +30,12 @@
                                         <td>{{ $employee->mobile }}</td>
                                         <td>{{ $employee->status }}</td>
                                         <td>
-                                            <a href="{{ route('employee.edit',$employee->id) }}" class="btn btn-primary">Edit</a>
-                                        </td>
-                                        <td>
-                                            <form action="{{ route('employee.destroy',$employee->id) }}" method="POST">
+                                            <a href="{{ route('employee.edit',$employee->id) }}" class="btn btn-sm btn-primary">Edit</a>
+
+                                            <form action="{{ route('employee.destroy',$employee->id) }}" method="POST" style="display:inline">
                                                 @csrf
                                                 @method('delete')
-                                                <button class="btn btn-primary" onclick="return confirm('Are you sure, you want to delete?')">Delete</button>
+                                                <button class="btn btn-sm btn-primary" onclick="return confirm('Are you sure, you want to delete?')">Delete</button>
                                             </form>
                                         </td>
                                     </tr>
