@@ -13,7 +13,6 @@
                                 <th scope="col">Designation</th>
                                 <th scope="col">Details</th>
                                 <th scope="col">Action</th>
-                                <th scope="col"></th>
                             </thead>
                             <tbody>
                                 @foreach ($designations as $designation)

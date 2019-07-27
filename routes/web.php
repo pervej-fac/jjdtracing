@@ -22,6 +22,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('department', 'DepartmentController');
     Route::resource('designation', 'DesignationController');
     Route::resource('page', 'PageController');
+    Route::resource('day', 'DayController');
+
 
 });
 

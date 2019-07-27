@@ -5,31 +5,29 @@
             <div class="card">
                 <div class="card-body">
                     {{-- <h4 class="card-title">{{ $title }}</h4> --}}
-                    <a href="{{ route('page.create') }}" class="btn btn-primary">Add New</a>
+                    <a href="#" class="btn btn-primary">Add New</a>
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
                                 <th scope="col">#</th>
-                                <th scope="col">Page No</th>
-                                <th scope="col">Page Name</th>
-                                <th scope="col">Operator Name</th>
-                                <th scope="col">Tracing Time</th>
-                                <th scope="col">Status</th>
+                                <th scope="col">Name</th>
                                 <th scope="col">Action</th>
                             </thead>
                             <tbody>
-                                @foreach ($pages as $page)
+                                @foreach ($days as $day)
                                     <tr>
                                         <td>{{ $serial++ }}</td>
-                                        <td>{{ $page->pageno }}</td>
-                                        <td>{{ $page->pagename }}</td>
-                                        <td>{{ $page->employee->employeename }}</td>
-                                        <td>{{ $page->tracingtime }}</td>
-                                        <td>{{ $page->status }}</td>
+                                        <td>{{ $day->name }}</td>
                                         <td>
-                                            <a href="{{ route('page.edit',$page->id) }}" class="btn btn-sm btn-primary">Edit</a>
+                                            <form action="{{ route('day.destroy',$day->id) }}" method="POST" style="display:inline">
+                                                @csrf
+                                                @method('delete')
+                                                <button class="btn btn-sm btn-primary" onclick="return confirm('Are you sure, you want to delete?')">Details</button>
+                                            </form>
 
-                                            <form action="{{ route('page.destroy',$page->id) }}" method="POST" style="display:inline">
+                                            <a href="{{ route('day.edit',$day->id) }}" class="btn btn-sm btn-primary">Add Pages</a>
+
+                                            <form action="{{ route('day.destroy',$day->id) }}" method="POST" style="display:inline">
                                                 @csrf
                                                 @method('delete')
                                                 <button class="btn btn-sm btn-primary" onclick="return confirm('Are you sure, you want to delete?')">Delete</button>

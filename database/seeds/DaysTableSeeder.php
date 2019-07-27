@@ -11,16 +11,6 @@ class DaysTableSeeder extends Seeder
      */
     public function run()
     {
-        // $week_days=array(array('name'=>'Saturday'),array('name'=>'Sunday'));
-        // ['name'=>'Monday'],['name'=>'Tuesday'],
-        // ['name'=>'Wednesday'],
-        // ['name'=>'Thursday'],
-        // ['name'=>'Friday'];
-
-        // @foreach($week_days as $day)
-            // DB::table('days')->insert($day);
-        // @endforeach
-
         DB::table('days')->insert(['name'=>'Saturday']);
         DB::table('days')->insert(['name'=>'Sunday']);
         DB::table('days')->insert(['name'=>'Monday']);

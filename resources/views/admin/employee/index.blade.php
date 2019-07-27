@@ -17,7 +17,6 @@
                                 <th scope="col">Mobile</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Action</th>
-                                <th scope="col"></th>
                             </thead>
                             <tbody>
                                 @foreach ($employees as $employee)
