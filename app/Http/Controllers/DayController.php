@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Day;
+use App\Page;
 
 class DayController extends Controller
 {
@@ -49,7 +50,11 @@ class DayController extends Controller
      */
     public function show($id)
     {
-        //
+        $data['pages']=Page::orderBy('id', 'ASC')->get();
+        $data['day_id']=$id;
+        $data['serial']=1;
+        $data['pageListView']=view('admin.daywisepage.pagelist',$data)->render();
+        return $data;
     }
 
     /**
@@ -58,7 +63,7 @@ class DayController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($day_id)
     {
         //
     }
@@ -83,6 +88,10 @@ class DayController extends Controller
      */
     public function destroy($id)
     {
+        //
+    }
+
+    public function savePages(){
         //
     }
 }

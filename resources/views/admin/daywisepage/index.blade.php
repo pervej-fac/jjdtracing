@@ -41,7 +41,7 @@
                                                 <button class="btn btn-sm btn-primary" onclick="return confirm('Are you sure, you want to delete?')">Details</button>
                                             </form>
 
-                                            <a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#pageList">Add Pages</a>
+                                            <a href="#" class="btn btn-sm btn-primary btn-add-pages" day-id="{{ $day->id }}" day-name="{{ $day->name }}" url="{{ route('day.show', $day->id) }}" data-toggle="modal" data-target="#pageList">Add Pages</a>
 
                                             <form action="{{ route('day.destroy',$day->id) }}" method="POST" style="display:inline">
                                                 @csrf
@@ -56,34 +56,61 @@
                     </div>
                 </div>
             </div>
-            //Page Model Started
-            <div class="modal fade" id="pageList" tabindex="-1" role="dialog" aria-labelledby="pageListLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Add Pages</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="container-fluid">
-                                <div class="row">
-                                  <div class="col-md-6">
-                                    col-md-6
-                                 </div>
-                                  <div class="col-md-6 ml-auto">.col-md-4 .ml-auto</div>
+            <form action="{{ route('daywisepage.save',$day->id) }}" method="POST">
+                @csrf
+                <div class="modal fade" id="pageList" tabindex="-1" role="dialog" aria-labelledby="pageListLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Add Pages</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                    {{-- <div class="col-md-12">
+                                        <input type="hidden" name="dayid" id="dayid" class="">
+                                        <input type="text" name="dayname" id="dayname" class="" readonly>
+                                    </div> --}}
+                                    <div class="col-md-12">
+                                        <span class="showPages">OK<span>
+                                    </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Save</button>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Save</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            //Page Model End
+            </form>
         </div>
     </div>
 @endsection
 
-
+@push('custom-js')
+    <script>
+        $(function(){
+            $('.btn-add-pages').click(function(){
+               /* $('#dayid').val($(this).attr('day-id'));
+                $('#dayname').val($(this).attr('day-name'));*/
+                var url=$(this).attr('url');
+                $.ajax({
+                    url: url,
+                    method: 'GET',
+                    success: function(data){
+                        //alert(JSON.stringify(data));
+                        //$.('.showPages').html(data.pageListView);
+                        $('.showPages').html(data.pageListView);
+                        //$('.headerCartDetails').html(data.headerCartDetailsView);
+                    },
+                    error: function(data){
+                        alert('Error');
+                    }
+                });
+            });
+        });
+    </script>
+@endpush

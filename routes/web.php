@@ -23,6 +23,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('designation', 'DesignationController');
     Route::resource('page', 'PageController');
     Route::resource('day', 'DayController');
+    Route::post('day/{day_id?}/savepage','DayController@savePages')->name('daywisepage.save');
 
 
 });

@@ -3,7 +3,6 @@
 
 <head>
     @include('layouts\theme1\_head')
-    @stack('custom-css')
 </head>
 
 <body>
@@ -99,7 +98,6 @@
     <!-- ============================================================== -->
     <!-- ============================================================== -->
    @include('layouts\theme1\_scripts')
-   @stack('custom-js')
 </body>
 
 </html>
