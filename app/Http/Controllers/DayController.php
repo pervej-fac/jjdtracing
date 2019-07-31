@@ -92,15 +92,40 @@ class DayController extends Controller
         //
     }
 
-    public function savePages(Request $request, $id){
+    public function savePages(Request $request){
         // $request->except('_token','pageno','pagename');
         // dd(count($request->dayid));
-        $daywisepage=new DaywisePage();
+        /*$daywisepage=new DaywisePage();
         $daywisepage->day_id=$request->dayid;
         $daywisepage->page_id=$request->pageid;
         $daywisepage->status=$request->status;
 
-        $daywisepage->save();
+        $daywisepage->save();*/
+        $request_data=$request->except('_token','pageno','pagename');
+        // dd($request_data);
+        // dd(count($request_data));
+        // foreach($request_data as $daypage){
+        //     dd($daypage);
+        // }
+        // dd(count($request_data['dayid']));
+        // for($i=0;$i<count($request_data['dayid']);$i++){
+
+        //     DaywisePage::create($request_data);
+        //     dd('ok');
+        // }
+            foreach($request->dayid as $key=>$value){
+                // dd($request->status[$key]);
+                $status=isset($request->status[$key])?$request->status[$key]:0;
+                // dd($status);
+                $request_data=array(
+                    'day_id'=>$request->dayid[$key],
+                    'page_id'=>$request->pageid[$key],
+                    'status'=>$status
+
+                );
+                DaywisePage::create($request_data);
+            }
+            session()->flash('message','Page added successfully!');
         return redirect()->back();
     }
 }
