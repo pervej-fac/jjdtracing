@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Day;
 use App\Page;
+use App\DaywisePage;
 
 class DayController extends Controller
 {
@@ -91,7 +92,15 @@ class DayController extends Controller
         //
     }
 
-    public function savePages(){
-        //
+    public function savePages(Request $request, $id){
+        // $request->except('_token','pageno','pagename');
+        // dd(count($request->dayid));
+        $daywisepage=new DaywisePage();
+        $daywisepage->day_id=$request->dayid;
+        $daywisepage->page_id=$request->pageid;
+        $daywisepage->status=$request->status;
+
+        $daywisepage->save();
+        return redirect()->back();
     }
 }

@@ -4,12 +4,14 @@
         .modal-dialog,
     .modal-content {
         /* 80% of window height */
+        width:100%;
         height: 70%;
     }
 
     .modal-body {
         /* 100% = dialog height, 120px = header + footer */
         max-height: calc(100% - 120px);
+        max-width:100%;
         overflow-y: scroll;
     }
     </style>
@@ -56,8 +58,7 @@
                     </div>
                 </div>
             </div>
-            <form action="{{ route('daywisepage.save',$day->id) }}" method="POST">
-                @csrf
+
                 <div class="modal fade" id="pageList" tabindex="-1" role="dialog" aria-labelledby="pageListLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
@@ -79,13 +80,13 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary">Save</button>
+                                <button type="submit" class="btn btn-primary" form="addPageForm">Save</button>
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                             </div>
                         </div>
                     </div>
                 </div>
-            </form>
+
         </div>
     </div>
 @endsection
@@ -94,6 +95,7 @@
     <script>
         $(function(){
             $('.btn-add-pages').click(function(){
+                var dayid
                /* $('#dayid').val($(this).attr('day-id'));
                 $('#dayname').val($(this).attr('day-name'));*/
                 var url=$(this).attr('url');
