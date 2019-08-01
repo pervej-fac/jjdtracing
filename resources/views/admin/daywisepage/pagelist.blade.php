@@ -17,7 +17,7 @@
                         <td><span class="form-control">{{ $serial++ }}</span></td>
                         <td><input name="pageno[]" type="text" value="{{ $page->pageno }}" class="form-control" style="width:70px"></td>
                         <td><input name="pagename[]" type="text" value="{{ $page->pagename }}" class="form-control"></td>
-                        <td><span class="form-control"><input name="status[]" type="checkbox" value="1"></span></td>
+                        <td><span class="form-control"><input name="status[{{ $page->id }}]" type="checkbox" value="1"></span></td>
                     </tr>
                 @endforeach
         </tbody>

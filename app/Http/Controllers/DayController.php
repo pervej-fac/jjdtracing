@@ -114,8 +114,24 @@ class DayController extends Controller
         //     dd('ok');
         // }
             foreach($request->dayid as $key=>$value){
+                // dd($key);
+                // dd($request);
+                //  dd($request->status[$request->pageid[$key]]);
+
+                //$status=has($request->status[$request->pageid[$key]])?1:0;
+                if(isset($request->status)){
+                    if(array_key_exists($request->pageid[$key],$request->status)){
+                        $status=$request->status[$request->pageid[$key]];
+                    }
+                    else{
+                        $status=0;
+                    }
+                }
+                else{
+                    return redirect()->back();
+                }
+
                 // dd($request->status[$key]);
-                $status=isset($request->status[$key])?$request->status[$key]:0;
                 // dd($status);
                 $request_data=array(
                     'day_id'=>$request->dayid[$key],
@@ -123,6 +139,7 @@ class DayController extends Controller
                     'status'=>$status
 
                 );
+                // dd($request_data);
                 DaywisePage::create($request_data);
             }
             session()->flash('message','Page added successfully!');
