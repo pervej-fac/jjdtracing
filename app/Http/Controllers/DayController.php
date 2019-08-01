@@ -121,26 +121,22 @@ class DayController extends Controller
                 //$status=has($request->status[$request->pageid[$key]])?1:0;
                 if(isset($request->status)){
                     if(array_key_exists($request->pageid[$key],$request->status)){
-                        $status=$request->status[$request->pageid[$key]];
+                        $request_data=array(
+                            'day_id'=>$request->dayid[$key],
+                            'page_id'=>$request->pageid[$key],
+                            'status'=>$request->status[$request->pageid[$key]]
+
+                        );
+                        DaywisePage::create($request_data);
                     }
-                    else{
-                        $status=0;
-                    }
+                    // else{
+                    //     $status=0;
+                    // }
                 }
                 else{
+                    session()->flash('message','No page selected!');
                     return redirect()->back();
                 }
-
-                // dd($request->status[$key]);
-                // dd($status);
-                $request_data=array(
-                    'day_id'=>$request->dayid[$key],
-                    'page_id'=>$request->pageid[$key],
-                    'status'=>$status
-
-                );
-                // dd($request_data);
-                DaywisePage::create($request_data);
             }
             session()->flash('message','Page added successfully!');
         return redirect()->back();
