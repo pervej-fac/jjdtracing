@@ -93,32 +93,9 @@ class DayController extends Controller
     }
 
     public function savePages(Request $request){
-        // $request->except('_token','pageno','pagename');
-        // dd(count($request->dayid));
-        /*$daywisepage=new DaywisePage();
-        $daywisepage->day_id=$request->dayid;
-        $daywisepage->page_id=$request->pageid;
-        $daywisepage->status=$request->status;
-
-        $daywisepage->save();*/
         $request_data=$request->except('_token','pageno','pagename');
-        // dd($request_data);
-        // dd(count($request_data));
-        // foreach($request_data as $daypage){
-        //     dd($daypage);
-        // }
-        // dd(count($request_data['dayid']));
-        // for($i=0;$i<count($request_data['dayid']);$i++){
 
-        //     DaywisePage::create($request_data);
-        //     dd('ok');
-        // }
             foreach($request->dayid as $key=>$value){
-                // dd($key);
-                // dd($request);
-                //  dd($request->status[$request->pageid[$key]]);
-
-                //$status=has($request->status[$request->pageid[$key]])?1:0;
                 if(isset($request->status)){
                     if(array_key_exists($request->pageid[$key],$request->status)){
                         $request_data=array(
@@ -129,9 +106,6 @@ class DayController extends Controller
                         );
                         DaywisePage::create($request_data);
                     }
-                    // else{
-                    //     $status=0;
-                    // }
                 }
                 else{
                     session()->flash('message','No page selected!');
