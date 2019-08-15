@@ -45,11 +45,6 @@
 
                                             <a href="#" class="btn btn-sm btn-primary btn-add-pages" day-id="{{ $day->id }}" day-name="{{ $day->name }}" url="{{ route('day.show', $day->id) }}" data-toggle="modal" data-target="#pageList">Add Pages</a>
 
-                                            <form action="{{ route('day.destroy',$day->id) }}" method="POST" style="display:inline">
-                                                @csrf
-                                                @method('delete')
-                                                <button class="btn btn-sm btn-primary" onclick="return confirm('Are you sure, you want to delete?')">Delete</button>
-                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach

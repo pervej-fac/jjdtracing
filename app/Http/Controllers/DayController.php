@@ -54,6 +54,8 @@ class DayController extends Controller
         $data['pages']=Page::orderBy('id', 'ASC')->get();
         $data['day_id']=$id;
         $data['serial']=1;
+        $data['checkedPages']=DaywisePage::select('page_id')->where('day_id', $id)->where('status',1)->orderBy('page_id', 'asc')->get();
+        // dd($data);
         $data['pageListView']=view('admin.daywisepage.pagelist',$data)->render();
         return $data;
     }
@@ -93,8 +95,6 @@ class DayController extends Controller
     }
 
     public function savePages(Request $request){
-        $request_data=$request->except('_token','pageno','pagename');
-
             foreach($request->dayid as $key=>$value){
                 if(isset($request->status)){
                     if(array_key_exists($request->pageid[$key],$request->status)){
@@ -102,7 +102,6 @@ class DayController extends Controller
                             'day_id'=>$request->dayid[$key],
                             'page_id'=>$request->pageid[$key],
                             'status'=>$request->status[$request->pageid[$key]]
-
                         );
                         DaywisePage::create($request_data);
                     }
