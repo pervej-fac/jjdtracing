@@ -21,11 +21,11 @@
                 @foreach ($pages as $page)
                     <input name="dayid[]" type="hidden" value="{{ $day_id }}">
                     <input name="pageid[]" type="hidden" value="{{ $page->id }}">
-
+                    {{--  <input name="pageno[]" type="hidden" value="{{ $page->pageno }}" style="width:70px">  --}}
                     <tr>
-                        <td><span class="form-control">{{ $serial++ }}</span></td>
-                        <td><input name="pageno[]" type="text" value="{{ $page->pageno }}" class="form-control" style="width:70px"></td>
-                        <td><input name="pagename[]" type="text" value="{{ $page->pagename }}" class="form-control"></td>
+                        <td>{{ $serial++ }}</td>
+                        <td> {{ $page->pageno }}</td>
+                        <td>{{ $page->pagename }}</td>
                         <td><span class="form-control"><input name="status[{{ $page->id }}]" type="checkbox" value="1"
                             @if (in_array($page->id,$chkPagesList))
                                 checked
