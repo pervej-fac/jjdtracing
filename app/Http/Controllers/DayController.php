@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Day;
 use App\Page;
 use App\DaywisePage;
+use Illuminate\Support\Facades\DB;
 
 class DayController extends Controller
 {
@@ -101,24 +102,31 @@ class DayController extends Controller
             session()->flash('message','No page selected!');
             return redirect()->back();
         }
-        
-        //Delete all pages already in database
-        $pages = new DaywisePage();
-        $pages=$pages->where('day_id', $dayid)->delete();
 
-        //Insert all pages into the database
-        foreach($request->dayid as $key=>$value){
-            if(array_key_exists($request->pageid[$key],$request->status)){
-                $request_data=array(
-                    'day_id'=>$request->dayid[$key],
-                    'page_id'=>$request->pageid[$key],
-                    'status'=>$request->status[$request->pageid[$key]]
-                );
-                DaywisePage::create($request_data);
+        DB::beginTransaction();
+        try{
+            //Delete all pages already in database
+            $pages = new DaywisePage();
+            $pages=$pages->where('day_id', $dayid)->delete();
+
+            //Insert all pages into the database
+            foreach($request->dayid as $key=>$value){
+                if(array_key_exists($request->pageid[$key],$request->status)){
+                    $request_data=array(
+                        'day_id'=>$request->dayid[$key],
+                        'page_id'=>$request->pageid[$key],
+                        'status'=>$request->status[$request->pageid[$key]]
+                    );
+                    DaywisePage::create($request_data);
+                }
             }
-        }
-
+            DB::commit();
             session()->flash('message','Page added successfully!');
-        return redirect()->back();
+            return redirect()->back();
+        }catch(Exception $e){
+            DB::rollback();
+            Log::error('DayController@savePages Message - '.$e->getMessage());
+            return redirect()->back();
+        }
     }
 }
