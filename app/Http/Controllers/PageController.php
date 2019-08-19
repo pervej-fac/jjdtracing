@@ -47,7 +47,7 @@ class PageController extends Controller
             'pageno'=>'required',
             'pagename'=>'required',
             'operatorid'=>'required',
-            'tracingtime'=>'required',
+            'tracingtime_1st_edition'=>'required',
             'status'=>'required'
         ]);
 
@@ -96,7 +96,7 @@ class PageController extends Controller
             'pageno'=>'required',
             'pagename'=>'required',
             'operatorid'=>'required',
-            'tracingtime'=>'required',
+            'tracingtime_1st_edition'=>'required',
             'status'=>'required'
         ]);
 

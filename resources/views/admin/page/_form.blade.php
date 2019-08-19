@@ -11,7 +11,7 @@
         <div class="form-group col-md-8 d-inline-block px-0 float-right">
             <label for="pagename" >Name</label>
             <div class="col-md-12 px-0">
-                <input type="text" value="{{ old('pagename', isset($page)?$page->pagename:null) }}" name="pagename" id="pagename" class="form-control form-control-line @error('employeename') is-invalid @enderror">
+                <input type="text" value="{{ old('pagename', isset($page)?$page->pagename:null) }}" name="pagename" id="pagename" class="form-control form-control-line @error('pagename') is-invalid @enderror">
             </div>
             @error('pagename')
                 <div class="text-danger">{{ $message }}</div>
@@ -46,11 +46,21 @@
     </div>
 
     <div class="form-group">
-        <label for="tracingtime">Tracing Time</label>
+        <label for="tracingtime_1st_edition">Tracing Time (First Edition)</label>
         <div class="col-md-12">
-            <input type="time" value="{{ old('mobile', isset($page)?$page->tracingtime:null) }}" name="tracingtime" id="tracingtime" class="form-control form-control-line @error('tracingtime') is-invalid @enderror">
+            <input type="time" value="{{ old('tracingtime_1st_edition', isset($page)?$page->tracingtime_1st_edition:null) }}" name="tracingtime_1st_edition" id="tracingtime_1st_edition" class="form-control form-control-line @error('tracingtime_1st_edition') is-invalid @enderror">
         </div>
-        @error('tracingtime')
+        @error('tracingtime_1st_edition')
+            <div class="text-danger">{{ $message }}</div>
+        @enderror
+    </div>
+
+    <div class="form-group">
+        <label for="tracingtime_2nd_edition">Tracing Time (Second Edition)</label>
+        <div class="col-md-12">
+            <input type="time" value="{{ old('tracingtime_2nd_edition', isset($page)?$page->tracingtime_2nd_edition:null) }}" name="tracingtime_2nd_edition" id="tracingtime_2nd_edition" class="form-control form-control-line @error('tracingtime_2nd_edition') is-invalid @enderror">
+        </div>
+        @error('tracingtime_2nd_edition')
             <div class="text-danger">{{ $message }}</div>
         @enderror
     </div>

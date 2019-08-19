@@ -10,7 +10,8 @@ class Page extends Model
         'pageno',
         'pagename',
         'operatorid',
-        'tracingtime',
+        'tracingtime_1st_edition',
+        'tracingtime_2nd_edition',
         'status'
     ];
 

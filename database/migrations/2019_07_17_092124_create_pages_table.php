@@ -19,7 +19,8 @@ class CreatePagesTable extends Migration
             $table->string('pagename');
             $table->unsignedBigInteger('operatorid');
             $table->foreign('operatorid')->references('id')->on('employees');
-            $table->time('tracingtime');
+            $table->time('tracingtime_1st_edition');
+            $table->time('tracingtime_2nd_edition')->nullable();
             $table->string('status');
             $table->timestamps();
         });
