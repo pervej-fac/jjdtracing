@@ -94,23 +94,30 @@ class DayController extends Controller
         //
     }
 
-    public function savePages(Request $request){
-            foreach($request->dayid as $key=>$value){
-                if(isset($request->status)){
-                    if(array_key_exists($request->pageid[$key],$request->status)){
-                        $request_data=array(
-                            'day_id'=>$request->dayid[$key],
-                            'page_id'=>$request->pageid[$key],
-                            'status'=>$request->status[$request->pageid[$key]]
-                        );
-                        DaywisePage::create($request_data);
-                    }
-                }
-                else{
-                    session()->flash('message','No page selected!');
-                    return redirect()->back();
-                }
+    public function savePages(Request $request,$dayid){
+        $count_checked_pages=DaywisePage::where('day_id', $dayid)->where('status',1)->count();
+
+        if(($count_checked_pages<=0) and (!isset($request->status))){
+            session()->flash('message','No page selected!');
+            return redirect()->back();
+        }
+        
+        //Delete all pages already in database
+        $pages = new DaywisePage();
+        $pages=$pages->where('day_id', $dayid)->delete();
+
+        //Insert all pages into the database
+        foreach($request->dayid as $key=>$value){
+            if(array_key_exists($request->pageid[$key],$request->status)){
+                $request_data=array(
+                    'day_id'=>$request->dayid[$key],
+                    'page_id'=>$request->pageid[$key],
+                    'status'=>$request->status[$request->pageid[$key]]
+                );
+                DaywisePage::create($request_data);
             }
+        }
+
             session()->flash('message','Page added successfully!');
         return redirect()->back();
     }

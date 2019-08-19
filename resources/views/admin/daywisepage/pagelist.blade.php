@@ -1,4 +1,4 @@
-<form action="{{ route('daywisepage.save') }}" method="POST" id="addPageForm">
+<form action="{{ route('daywisepage.save',$day_id) }}" method="POST" id="addPageForm">
         @csrf
 <div class="table-responsive">
     <table class="table">
