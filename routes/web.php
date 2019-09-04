@@ -24,8 +24,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('page', 'PageController');
     Route::resource('day', 'DayController');
     Route::post('day/{id}','DayController@savePages')->name('daywisepage.save');
-
-
+    Route::resource('tracing', 'TracingController');
 });
 
 Route::get('logout',function(){

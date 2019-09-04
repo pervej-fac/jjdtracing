@@ -1,0 +1,4 @@
+$currentDate=today();
+        // dd($currentDate->toDateString());
+        dd($currentDate->format('d-m-Y'));
+        dd($currentDate->format('l'));

@@ -18,4 +18,7 @@ class Page extends Model
     public function employee(){
         return $this->belongsTo(Employee::class,'operatorid');
     }
+    public function page(){
+        return $this->hasMany(DaywisePage::class);
+    }
 }

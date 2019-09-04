@@ -40,7 +40,8 @@ class DesignationController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'designation'=>'required'
+            'designation'=>'required',
+            'firstname'=>'required'
         ]);
         $designation=$request->except('_token');
         Designation::create($designation);

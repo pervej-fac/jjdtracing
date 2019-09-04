@@ -41,7 +41,7 @@ class DayController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       //
     }
 
     /**
