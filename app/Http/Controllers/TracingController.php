@@ -19,7 +19,10 @@ class TracingController extends Controller
      */
     public function index()
     {
-        //
+        $data['title']='Tracing List';
+        $data['tracings']=Tracing::orderBy('id','DESC')->get();
+        $data['serial']=1;
+        return view('admin.tracing.index', $data);
     }
 
     /**
@@ -40,9 +43,6 @@ class TracingController extends Controller
      */
     public function store(Request $request)
     {
-        // $day=Day::with(['day','page'])->where('name',Carbon::parse($request->tracingDate)->format('l'))->first();
-        // dd($day);
-
         DB::beginTransaction();
         try{
             //Tracing Data
@@ -75,11 +75,14 @@ class TracingController extends Controller
 
 
             DB::commit();
+            session()->flash('message','Tracing generated successfully.');
+            return redirect()->route('tracing.index');
         }
         catch(Exception $exeption){
 
             DB::rollback();
-
+            session()->flash('message','Failure Notice: Unable to generate tracing');
+            return redirect()->route('tracing.index');
         }
 
 

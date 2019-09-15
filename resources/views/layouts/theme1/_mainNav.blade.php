@@ -34,6 +34,7 @@
             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('employee.index') }}" aria-expanded="false"><i class="mdi mdi-border-all"></i><span class="hide-menu">Employees</span></a></li>
             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('page.index') }}" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Pages</span></a></li>
             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('day.index') }}" aria-expanded="false"><i class="mdi mdi-alert-outline"></i><span class="hide-menu">Day Wise Pages</span></a></li>
+            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('tracing.index') }}" aria-expanded="false"><i class="mdi mdi-alert-outline"></i><span class="hide-menu">Tracings</span></a></li>
         </ul>
 
     </nav>

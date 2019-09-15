@@ -22,7 +22,6 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#generateTracing">Generate Tracing</a>
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
@@ -45,33 +44,6 @@
                     </div>
                 </div>
             </div>
-                //Generate Tracing Modal
-                <div class="modal fade" id="generateTracing" tabindex="-1" role="dialog" aria-labelledby="pageListLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h6 class="modal-title">Select Tracing date</h6>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="{{ route('tracing.store') }}" method="POST">
-                                    @csrf
-                                    <div class="container-fluid">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <input type="date" class="form-control" name="tracingDate" id="tracingDate">
-                                                </div>
-                                                    <button type="submit" class="btn btn-primary">Generate</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 //Show Pages Modal
                 <div class="modal fade" id="pageList" tabindex="-1" role="dialog" aria-labelledby="pageListLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
