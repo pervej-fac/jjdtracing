@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Tracing;
 use App\Day;
+use App\Employee;
 use App\TracingDetail;
 use Exception;
 use Illuminate\Http\Request;
@@ -106,9 +107,21 @@ class TracingController extends Controller
      * @param  \App\Tracing  $tracing
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tracing $tracing)
+    public function edit($id)
     {
-        //
+        /*$data['title']='Edit Page';
+        $data['operators']=Employee::orderBy('employeename')->get();
+        $data['page']=Page::findOrfail($id);
+        return view('admin.page.edit',$data);*/
+
+        $data['title']='Tracing Records';
+        $data['serial']=1;
+        // $data['tracing']=Tracing::where('id',$id)->get();
+        $data['tracing_data']=Tracing::with('tracing_details')->findOrfail($id);
+        $data['operators']=Employee::where('status','active')->get();
+        // dd($data['tracing_data']);
+        // dd($data['operators']);
+        return view('admin.tracing.edit',$data);
     }
 
     /**

@@ -16,11 +16,11 @@ class Tracing extends Model
         'status'
     ];
 
-    public function tracing_detail(){
+    public function tracing_details(){
         return $this->hasMany(TracingDetail::class);
     }
-    public function operator(){
+    /*public function operator(){
         return $this->belongsTo(Employee::class);
-    }
-    
+    }*/
+
 }
