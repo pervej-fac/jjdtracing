@@ -29,51 +29,56 @@
                     </div>
                     </div>
 
-<hr>
-                    <table class="col-12  tracing-details table-responsive-lg">
-                        <tr>
-                            <th>Sl</th>
-                            <th>Page No</th>
-                            <th>Page Name</th>
-                            <th>Edition</th>
-                            <th>Operator</th>
-                            <th>Time</th>
-                            <th>Printed</th>
-                            <th>Recieved</th>
-                            <th>Recieved By</th>
-                            <th>Status</th>
-                            <th>Remarks</th>
-                        </tr>
 
+                <hr>
+                    <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
 
+                            <tr>
+                                <th>Sl</th>
+                                <th>Page No</th>
+                                <th>Page Name</th>
+                                <th>Edition</th>
+                                <th>Operator</th>
+                                <th>Time</th>
+                                <th>Printed</th>
+                                <th>Recieved</th>
+                                <th>Recieved By</th>
+                                <th>Status</th>
+                                <th>Remarks</th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
                             @foreach ($tracing_data->tracing_details as $tracing)
-                                {{--  <input type="text" value={{ $tracing->page_name }}>  --}}
-                                <tr>
-                                    <td style="border-bottom: 1px solid">{{ $serial++ }}</td>
-                                    <td style="width:65px"><input type="text" value={{ $tracing->page_no }} name="page_no" id="page_no" style="width:65px"></td>
-                                    <td style="width:120px"><input type="text" value={{ $tracing->page_name }} name="page_name" id="page_name" style="width:120px"></td>
-                                    <td style="width:50px"><input type="text" value={{ $tracing->edition }} name="edition" id="edition" style="width:50px"></td>
-                                    <td style="width:120px">
-                                        {{--  <input type="text" value={{ $tracing->page_name }} name="" id="operator_id" >  --}}
-                                    <select name="operator_id" id="operator_id" style="width:120px">
-                                        @foreach ($operators as $operator)
-                                        <option value="{{ $operator->id }}" @if ($tracing->operator_id==$operator->id) selected
-                                                @endif>{{ $operator->employeename }}</option>
-                                        @endforeach
-                                    </select>
-                                    </td>
-                                    <td style="width:70px"><input type="text" value={{ $tracing->tracing_time }} name="tracing_time" id="tracing_time" style="width:70px"></td>
-                                    <td style="width:100px"><input type="time"  name="printed_time" id="printed_time" style="width:100px"></td>
-                                    <td style="width:100px"><input type="time"  name="recieved_time" id="recieved_time" style="width:100px"></td>
-                                    <td style="width:120px"><input type="text"  name="recieved_by" id="recieved_by" style="width:120px"></td>
-                                    <td style="width:50px"><input type="text"  name="status" id="status" style="width:50px"></td>
-                                    <td style="width:100px"><input type="text"  name="remarks" id="remarks" style="width:100px"></td>
-                                </tr>
-                            @endforeach
-
+                            {{--  <input type="text" value={{ $tracing->page_name }}>  --}}
+                            <tr>
+                                <td style="border-bottom: 1px solid">{{ $serial++ }}</td>
+                                <td style="width:65px"><input type="text" value={{ $tracing->page_no }} name="page_no" id="page_no" style="width:65px"></td>
+                                <td style="width:120px"><input type="text" value={{ $tracing->page_name }} name="page_name" id="page_name" style="width:120px"></td>
+                                <td style="width:50px"><input type="text" value={{ $tracing->edition }} name="edition" id="edition" style="width:50px"></td>
+                                <td style="width:120px">
+                                    {{--  <input type="text" value={{ $tracing->page_name }} name="" id="operator_id" >  --}}
+                                <select name="operator_id" id="operator_id" style="width:120px">
+                                    @foreach ($operators as $operator)
+                                    <option value="{{ $operator->id }}" @if ($tracing->operator_id==$operator->id) selected
+                                            @endif>{{ $operator->employeename }}</option>
+                                    @endforeach
+                                </select>
+                                </td>
+                                <td style="width:70px"><input type="text" value={{ $tracing->tracing_time }} name="tracing_time" id="tracing_time" style="width:70px"></td>
+                                <td style="width:100px"><input type="time"  name="printed_time" id="printed_time" style="width:100px"></td>
+                                <td style="width:100px"><input type="time"  name="recieved_time" id="recieved_time" style="width:100px"></td>
+                                <td style="width:120px"><input type="text"  name="recieved_by" id="recieved_by" style="width:120px"></td>
+                                <td style="width:50px"><input type="text"  name="status" id="status" style="width:50px"></td>
+                                <td style="width:100px"><input type="text"  name="remarks" id="remarks" style="width:100px"></td>
+                            </tr>
+                        @endforeach
+                        </tbody>
                     </table>
-<hr>
-
+                    </div>
+                <hr>
                     <div class="form-group" style="margin-top: 20px">
                         <div class="col-sm-12">
                             <button class="btn btn-success">Apply Changes</button>
