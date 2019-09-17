@@ -59,7 +59,7 @@
                                 <input type="hidden" name="tracing_detail_id[]" id="tracing_detail_id" value={{ $tracing->tracing_id }}>
                                 <td style="border-bottom: 1px solid">{{ $serial++ }}</td>
                                 <td style="width:65px"><input type="text" name="page_no[]" id="page_no" style="width:65px" value={{ $tracing->page_no }}></td>
-                                <td style="width:120px"><input type="text" name="page_name[]" id="page_name" style="width:120px" value={{ $tracing->page_name }}></td>
+                                <td style="width:120px"><input type="text" name="page_name[]" id="page_name" style="width:120px" value="{{ $tracing->page_name }}"></td>
                                 <td style="width:50px"><input type="text" name="edition[]" id="edition" style="width:50px" value={{ $tracing->edition }}></td>
                                 <td style="width:120px">
                                     {{--  <input type="text" value={{ $tracing->page_name }} name="" id="operator_id" >  --}}
