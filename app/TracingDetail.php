@@ -13,6 +13,7 @@ class TracingDetail extends Model
         'edition',
         'operator_id',
         'tracing_time',
+        'printed_time',
         'recieved_time',
         'recieved_by',
         'status',

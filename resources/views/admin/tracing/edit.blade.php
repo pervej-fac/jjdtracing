@@ -3,10 +3,11 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-body">
-                <form  method="post" class="form-horizontal form-material">
+                <form action="{{ route('tracing.update',$tracing_data->id) }}"  method="post" class="form-horizontal form-material">
                     @csrf
                     @method('put')
                     <div class="form-header">
+                    <input type="hidden" value="{{ $tracing_data->id }}" name="tracing_id" id="tracing_id">
                     <div class="col-md-6">
                         <div class="input-group input-form">
                             <span class="input-group-addon">Tracing No</span>
@@ -54,25 +55,27 @@
                             @foreach ($tracing_data->tracing_details as $tracing)
                             {{--  <input type="text" value={{ $tracing->page_name }}>  --}}
                             <tr>
+                                <input type="hidden" name="id[]" id="id" value={{ $tracing->id }}>
+                                <input type="hidden" name="tracing_detail_id[]" id="tracing_detail_id" value={{ $tracing->tracing_id }}>
                                 <td style="border-bottom: 1px solid">{{ $serial++ }}</td>
-                                <td style="width:65px"><input type="text" value={{ $tracing->page_no }} name="page_no" id="page_no" style="width:65px"></td>
-                                <td style="width:120px"><input type="text" value={{ $tracing->page_name }} name="page_name" id="page_name" style="width:120px"></td>
-                                <td style="width:50px"><input type="text" value={{ $tracing->edition }} name="edition" id="edition" style="width:50px"></td>
+                                <td style="width:65px"><input type="text" name="page_no[]" id="page_no" style="width:65px" value={{ $tracing->page_no }}></td>
+                                <td style="width:120px"><input type="text" name="page_name[]" id="page_name" style="width:120px" value={{ $tracing->page_name }}></td>
+                                <td style="width:50px"><input type="text" name="edition[]" id="edition" style="width:50px" value={{ $tracing->edition }}></td>
                                 <td style="width:120px">
                                     {{--  <input type="text" value={{ $tracing->page_name }} name="" id="operator_id" >  --}}
-                                <select name="operator_id" id="operator_id" style="width:120px">
+                                <select name="operator_id[]" id="operator_id" style="width:120px">
                                     @foreach ($operators as $operator)
                                     <option value="{{ $operator->id }}" @if ($tracing->operator_id==$operator->id) selected
                                             @endif>{{ $operator->employeename }}</option>
                                     @endforeach
                                 </select>
                                 </td>
-                                <td style="width:70px"><input type="text" value={{ $tracing->tracing_time }} name="tracing_time" id="tracing_time" style="width:70px"></td>
-                                <td style="width:100px"><input type="time"  name="printed_time" id="printed_time" style="width:100px"></td>
-                                <td style="width:100px"><input type="time"  name="recieved_time" id="recieved_time" style="width:100px"></td>
-                                <td style="width:120px"><input type="text"  name="recieved_by" id="recieved_by" style="width:120px"></td>
-                                <td style="width:50px"><input type="text"  name="status" id="status" style="width:50px"></td>
-                                <td style="width:100px"><input type="text"  name="remarks" id="remarks" style="width:100px"></td>
+                                <td style="width:70px"><input type="text" name="tracing_time[]" id="tracing_time" style="width:70px" value={{ $tracing->tracing_time }}></td>
+                                <td style="width:100px"><input type="time" name="printed_time[]" id="printed_time" style="width:100px" value={{ $tracing->printed_time }}></td>
+                                <td style="width:100px"><input type="time"  name="recieved_time[]" id="recieved_time" style="width:100px" value={{ $tracing->recieved_time }}></td>
+                                <td style="width:120px"><input type="text" name="recieved_by[]" id="recieved_by" style="width:120px" value={{ isset($tracing->recieved_by)?$tracing->recieved_by:null }}></td>
+                                <td style="width:50px"><input type="text" name="status[]" id="status" style="width:50px" value={{ isset($tracing->status)?$tracing->status:null }}></td>
+                                <td style="width:100px"><input type="text" name="remarks[]" id="remarks" style="width:100px" value={{ isset($tracing->remarks)?$tracing->remarks:null }}></td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -81,7 +84,7 @@
                 <hr>
                     <div class="form-group" style="margin-top: 20px">
                         <div class="col-sm-12">
-                            <button class="btn btn-success">Apply Changes</button>
+                            <button class="btn btn-success" type="submit">Apply Changes</button>
                         </div>
                     </div>
                 </form>

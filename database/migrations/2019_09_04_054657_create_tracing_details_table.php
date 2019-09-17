@@ -24,8 +24,9 @@ class CreateTracingDetailsTable extends Migration
             $table->unsignedBigInteger('operator_id');
             $table->foreign('operator_id')->references('id')->on('employees');
             $table->time('tracing_time');
+            $table->time('printed_time')->nullable();
             $table->time('recieved_time')->nullable();
-            $table->time('recieved_by')->nullable();
+            $table->string('recieved_by')->nullable();
             $table->string('status')->nullable();
             $table->text('remarks')->nullable();
             $table->timestamps();

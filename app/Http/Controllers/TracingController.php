@@ -6,10 +6,10 @@ use App\Tracing;
 use App\Day;
 use App\Employee;
 use App\TracingDetail;
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+
 
 class TracingController extends Controller
 {
@@ -133,7 +133,47 @@ class TracingController extends Controller
      */
     public function update(Request $request, Tracing $tracing)
     {
-        //
+
+        $request->validate([
+            'tracing_id'=>'required',
+            'page_no'=>'required',
+            'page_name'=>'required',
+            'edition'=>'required',
+            'operator_id'=>'required',
+            'tracing_time'=>'required'
+        ]);
+
+        DB::beginTransaction();
+        try{
+            $tracing->findOrFail($request->tracing_id)->update(['tracing_no'=>$request->tracing_no,'tracing_date'=>$request->tracing_date,'publication_date'=>$request->publication_date]);
+
+            if(count($request->id)>0){
+                for($i=0;$i<count($request->id);$i++){
+                    $detail=TracingDetail::findOrFail($request->id[$i]);
+
+                    $detail->tracing_id=$request->tracing_detail_id[$i];
+                    $detail->page_no=$request->page_no[$i];
+                    $detail->page_name=$request->page_name[$i];
+                    $detail->edition=$request->edition[$i];
+                    $detail->operator_id=$request->operator_id[$i];
+                    $detail->tracing_time=$request->tracing_time[$i];
+                    $detail->printed_time=$request->printed_time[$i];
+                    $detail->recieved_time=$request->recieved_time[$i];
+                    $detail->recieved_by=$request->recieved_by[$i];
+                    $detail->status=$request->status[$i];
+                    $detail->remarks=$request->remarks[$i];
+
+                    $detail->save();
+                }
+            }
+            DB::commit();
+            session()->flash('message','Tracing updated successfully!');
+            return redirect()->route('tracing.index');
+        }catch(Exeption $e){
+            DB::rollback();
+            session()->flash('message','Failure Notice: Unable to update!');
+            return redirect()->route('tracing.index');
+        }
     }
 
     /**
